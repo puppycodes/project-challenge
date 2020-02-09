@@ -42,9 +42,7 @@ Todo:
 - On the dog detail page that has more than one profile image, (ex http://localhost:3000/dogs/1), display profile images in a functioning carousel
 Feel free to use vanilla JS or a carousel library.
 
-- Use flexbox, CSS grids, or a grid framework to display the homepage's dog profile thumbnails in a responsive grid layout
-
-- On mobile, the thumbnails should be 1 across, on tablet they should be 2 across, and on desktop they should be 3 across.
+- Use flexbox, CSS grids, or a grid framework to display the homepage's dog profile thumbnails in a responsive grid layout. On mobile, the thumbnails should be 1 across, on tablet they should be 2 across, and on desktop they should be 3 across.
 
 - Use utility classes within a layout framework (Bootstrap, Foundation, Material Design, or another) to add a structured layout to the page without custom CSS.
 
