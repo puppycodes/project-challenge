@@ -7,10 +7,11 @@
   <% end %>
 
   <p><%= @dog.description %></p>
+  
   <% if @owner == current_user %>
 
   <span> the owner is: </span>
-  <h3><%= @owner.name %></h3>
+  <h3><%= @owner.email %></h3>
 
   <%= link_to "Edit #{@dog.name}'s Profile", edit_dog_path %>
   <br>
