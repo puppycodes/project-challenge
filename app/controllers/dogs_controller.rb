@@ -11,7 +11,6 @@ class DogsController < ApplicationController
   # GET /dogs/1
   # GET /dogs/1.json
   def show
-    # @owner = validate_owner
   end
 
   # GET /dogs/new
@@ -33,6 +32,7 @@ class DogsController < ApplicationController
 
     respond_to do |format|
       if @dog.save
+        # @dog.user_id = current_user.id
         @dog.images.attach(params[:dog][:image]) if params[:dog][:image].present?
 
         format.html { redirect_to @dog, notice: 'Dog was successfully created.' }
