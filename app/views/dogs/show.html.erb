@@ -7,7 +7,17 @@
   <% end %>
 
   <p><%= @dog.description %></p>
-  
+
+  <h3>Likes: <%= @dog.likes.count %></h3>
+
+  <% if current_user != @owner %>
+    <% if @like %>
+      <%= button_to "Unlike", dog_like_path(@dog), method: :delete %>
+    <% else %>
+      <%= button_to "Like", dog_likes_path(@dog), method: :post %>
+    <% end %>
+  <% end %>
+
   <% if @owner == current_user %>
 
   <span> the owner is: </span>
