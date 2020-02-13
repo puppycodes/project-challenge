@@ -1,3 +1,4 @@
+require "will_paginate/array"
 class DogsController < ApplicationController
   before_action :set_dog, only: [:show, :edit, :update, :destroy]
   before_action :validate_owner, only: [:show, :edit, :update, :destroy]
@@ -5,7 +6,17 @@ class DogsController < ApplicationController
   # GET /dogs
   # GET /dogs.json
   def index
-    @dogs = Dog.all.paginate(page: params[:page], per_page: 5)
+    liked_dogs_ids = Like.where('created_at > ?', 1.hours.ago).pluck(:dog_id)
+    recent_dogs = liked_dogs_ids.uniq.map { |id| Dog.find(id) }
+    lonely_dogs = []
+    Dog.all.each do |dog|
+      if liked_dogs_ids.exclude?(dog.id)
+         lonely_dogs << dog
+      end
+    end
+    trending_dogs = recent_dogs.sort_by { |dog| dog.likes.count }.reverse
+    all_dogs = trending_dogs.concat(lonely_dogs)
+    @dogs = all_dogs.paginate(page: params[:page], per_page: 5)
   end
 
   # GET /dogs/1
