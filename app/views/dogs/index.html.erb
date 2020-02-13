@@ -1,2 +1,10 @@
-<%= render partial: 'thumbnail', collection: @dogs, as: :dog %>
-<%= will_paginate @posts %>
+<% counter = 0 %>
+<% @dogs.each do |dog| %>
+  <%= render partial: 'thumbnail', object: dog, as: 'dog' %>
+  <% counter+=1 %>
+  <% if counter == 2 %>
+  <%= image_tag("ad.jpg") %>
+  <% counter = 0 %>
+  <% end %>
+<% end %>
+<%= will_paginate @dogs %>
